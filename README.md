@@ -28,22 +28,26 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import scipy.stats as stats
 from sklearn.preprocessing import QuantileTransformer
-```
-
-```
-df=pd.read_csv("data_trans.csv")
+df=pd.read_csv("Data_to_Transform.csv")
 df
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/d0a1db73-66c5-4e2e-8f1f-7ba5f4ce77b0)
 
 ```
-sm.qqplot(df.HighlyPositiveSkew,fit=True,line='45')
-plt.show()
+df.head()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/0d338a48-af55-4a2d-af12-e3ccd6cc4baa)
 
 ```
-sm.qqplot(df.HighlyNegativeSkew,fit=True,line='45')
-plt.show()
+df.isnull().sum()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/1ca5d263-87c4-4ef4-971d-9b5b31f2dc67)
+
+```
+df.info()
+```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/504c7303-c8eb-4473-aad2-003637b1e79c)
+
 
 ```
 sm.qqplot(df.ModeratePositiveSkew,fit=True,line='45')
@@ -97,10 +101,11 @@ df['ModerateNegativeSkew_2']=pd.DataFrame(qt.fit_transform(df[['ModerateNegative
 sm.qqplot(df.ModerateNegativeSkew_2,fit=True,line='45')
 plt.show()
 ```
-
+```
 df2=df.copy()
-
+```
+```
 df2['HighlyPositiveSkew']= 1/df2.HighlyPositiveSkew
 sm.qqplot(df2.HighlyPositiveSkew,fit=True,line='45')
-
 plt.show()
+```
