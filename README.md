@@ -50,62 +50,83 @@ df.info()
 
 
 ```
-sm.qqplot(df.ModeratePositiveSkew,fit=True,line='45')
-plt.show()
+df.describe()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/c06b618b-fb44-4e2e-b223-095f50b9a725)
+
 
 ```
-sm.qqplot(df.ModerateNegativeSkew,fit=True,line='45')
+df1 = df.copy()
+sm.qqplot(df1['Highly Positive Skew'],fit=True,line='45')
 plt.show()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/aaffd845-b9fe-4704-b3ae-7b4f3f5c8d03)
 
 ```
-df['HighlyPositiveSkew']=np.log(df.HighlyPositiveSkew)
-sm.qqplot(df.HighlyPositiveSkew,fit=True,line='45')
+sm.qqplot(df1['Highly Negative Skew'],fit=True,line='45')
 plt.show()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/e68528c8-6c78-42b2-9068-cdc9f1e3c647)
+
 
 ```
-df['HighlyNegativeSkew']=np.log(df.HighlyNegativeSkew)
-sm.qqplot(df.HighlyPositiveSkew,fit=True,line='45')
+sm.qqplot(df1['Moderate Positive Skew'],fit=True,line='45')
 plt.show()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/097979c0-803e-4618-b6ff-93cd9fe4cf04)
 
 ```
-df['ModeratePositiveSkew_1'], parameters=stats.yeojohnson(df.ModeratePositiveSkew)
-sm.qqplot(df.ModeratePositiveSkew_1,fit=True,line='45')
+df1['Highly Positive Skew'] = np.log(df1['Highly Positive Skew'])
+sm.qqplot(df1['Highly Positive Skew'],fit=True,line='45')
 plt.show()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/79b1262a-e785-4a19-9bac-3f71f1728220)
 
 ```
-df['ModerateNegativeSkew_1'], parameters=stats.yeojohnson(df.ModerateNegativeSkew)
-sm.qqplot(df.ModerateNegativeSkew_1,fit=True,line='45')
+df2 = df.copy()
+df2['Highly Positive Skew'] = 1/df2['Highly Positive Skew']
+sm.qqplot(df2['Highly Positive Skew'],fit=True,line='45')
 plt.show()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/df956f1e-c9b7-4894-bef1-693fba72b777)
+
+```
+df3 = df.copy()
+df3['Highly Positive Skew'] = df3['Highly Positive Skew']**(1/1.2)
+sm.qqplot(df2['Highly Positive Skew'],fit=True,line='45')
+plt.show()
+```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/f169c9d0-22c2-4647-b41b-ba52b393bce2)
+
+```
+df4 = df.copy()
+df4['Moderate Positive Skew_1'],parameters =stats.yeojohnson(df4['Moderate Positive Skew'])
+sm.qqplot(df4['Moderate Positive Skew_1'],fit=True,line='45')
+plt.show()
+```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/163cfc21-d009-47f8-954d-398107ea472f)
 
 ```
 from sklearn.preprocessing import PowerTransformer
-transformer=PowerTransformer("yeo-johnson")
-df['ModerateNegativeSkew_2']=pd.DataFrame(transformer.fit_transform(df[['ModerateNegativeSkew']]))
-sm.qqplot(df.ModerateNegativeSkew_2,fit=True,line='45')
+trans = PowerTransformer("yeo-johnson")
+df5 = df.copy()
+df5['Moderate Negative Skew_1'] = pd.DataFrame(trans.fit_transform(df5[['Moderate Negative Skew']]))
+sm.qqplot(df5['Moderate Negative Skew_1'],line='45')
 plt.show()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/b8610549-adb5-4cbc-9bfc-1bbd08420b28)
 
 ```
 from sklearn.preprocessing import QuantileTransformer
-qt= QuantileTransformer(output_distribution = 'normal')
-df['ModerateNegativeSkew_2']=pd.DataFrame(qt.fit_transform(df[['ModerateNegativeSkew']]))
+qt = QuantileTransformer(output_distribution = 'normal')
+df5['Moderate Negative Skew_2'] = pd.DataFrame(qt.fit_transform(df5[['Moderate Negative Skew']]))
+sm.qqplot(df5['Moderate Negative Skew_2'],line='45')
+plt.show()
 ```
+![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/7a478387-3797-4c60-98fb-3d1524c56e53)
 
 ```
-sm.qqplot(df.ModerateNegativeSkew_2,fit=True,line='45')
-plt.show()
-```
-```
-df2=df.copy()
-```
-```
-df2['HighlyPositiveSkew']= 1/df2.HighlyPositiveSkew
-sm.qqplot(df2.HighlyPositiveSkew,fit=True,line='45')
-plt.show()
-```
+
+# RESULT
+
+Thus feature transformation is done for the given set
