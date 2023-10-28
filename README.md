@@ -122,10 +122,10 @@ qt = QuantileTransformer(output_distribution = 'normal')
 df5['Moderate Negative Skew_2'] = pd.DataFrame(qt.fit_transform(df5[['Moderate Negative Skew']]))
 sm.qqplot(df5['Moderate Negative Skew_2'],line='45')
 plt.show()
+
 ```
 ![image](https://github.com/madhi43/ODD2023-Datascience-Ex06/assets/103943383/7a478387-3797-4c60-98fb-3d1524c56e53)
 
-```
 
 # RESULT
 
